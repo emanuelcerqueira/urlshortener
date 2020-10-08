@@ -22,7 +22,8 @@ public class UrlController {
     @PostMapping(value = "/url/shorten")
     public ResponseEntity<Url> shortenUrl(@Valid @RequestBody UrlRequest urlRequest) {
         Url url = urlRequest.toUrl();
-        return ResponseEntity.ok(urlRepository.save(url));
+        Url persistedUrl = urlRepository.save(url);
+        return ResponseEntity.ok(persistedUrl);
     }
 
     @GetMapping(value = "/{slug}")
